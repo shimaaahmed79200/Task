@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary Page</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container" id="summaryContainer">
+        <h1>Your Information is :</h1>
+        <p id="firstName"></p>
+        <p id="lastName"></p>
+        <p id="email"></p>
+        <p id="phone"></p>
+        <button id="congratulationsBtn">Confirm</button>
+    </div>
+
+    <div class="container" id="congratulationsContainer" style="display: none;">
+        <h1>Congratulations</h1>
+        <button id="backToWelcomeBtn">Back to Welcome Page</button>
+    </div>
+
+    <script>
+        const userData = JSON.parse(localStorage.getItem("userData"));
+
+        document.getElementById("firstName").textContent = "First Name: " + userData.firstName;
+        document.getElementById("lastName").textContent = "Last Name: " + userData.lastName;
+        document.getElementById("email").textContent = "Email: " + userData.email;
+        document.getElementById("phone").textContent = "Phone Number: " + userData.phone;
+
+        document.getElementById("congratulationsBtn").addEventListener("click", function() {
+            document.getElementById("summaryContainer").style.display = "none";
+            document.getElementById("congratulationsContainer").style.display = "block";
+        });
+
+        document.getElementById("backToWelcomeBtn").addEventListener("click", function() {
+            localStorage.removeItem("userData");
+            window.location.href = "./index.html";
+        });
+    </script>
+</body>
+</html>
